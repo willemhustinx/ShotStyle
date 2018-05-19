@@ -1,6 +1,6 @@
 <?php
 /**
- * The Template for displaying all single teams.
+ * The Template for displaying all single posts.
  *
  * @package shotstyle
  */
@@ -11,9 +11,10 @@ get_header(); ?>
 		<main id="main" class="site-main" role="main">
 
 		<?php
-		while ( have_posts() ) : the_post();
+		while ( have_posts() ) :
+			the_post();
 
-			get_template_part( 'template-parts/content', 'team' );
+			get_template_part( 'template-parts/content', 'single' );
 
 			the_post_navigation(
 				array(
