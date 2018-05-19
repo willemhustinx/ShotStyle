@@ -181,7 +181,7 @@ function event_date_time() {
 		date_i18n ( 'H:i' , get_post_meta( get_the_ID() , 'event_timestamp', true) )
 	);
 
-	printf( '<span class="posted-on"><i class="fa fa-calendar-alt"></i> %1$s</span><span class="byline"> <span class="posted-on"><i class="fa fa-clock-o"></i> %2$s</span><span class="byline"> <i class="fa fa-user"></i> %3$s</span>',
+	printf( '<span class="posted-on"><i class="fa fa-calendar-alt"></i> %1$s</span><span class="byline"> <span class="posted-on"><i class="fa fa-clock"></i> %2$s</span><span class="byline"> <i class="fa fa-user"></i> %3$s</span>',
 		sprintf( '<a href="%1$s" rel="bookmark">%2$s</a>',
 			esc_url( get_permalink() ),
 			$date_string
