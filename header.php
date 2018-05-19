@@ -76,15 +76,6 @@
 
 		<div class="top-section">
 			<?php sparkling_featured_slider(); ?>
-		</div>
-		
-		<?php if ( is_front_page() ) :?>
-		<div class="container main-content-area">
-			<?php get_sidebar( 'home' ); ?>
-		</div>
-		<?php endif; ?>	
-		
-		<div class="top-section">
 			<?php sparkling_call_for_action(); ?>
 		</div>
 
