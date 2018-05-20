@@ -79,7 +79,7 @@
 		</div>
 		
 		<?php if ( is_front_page() ) :?>
-		<div class="container main-content-area">
+		<div class="container header-widget-area">
 			<?php get_sidebar( 'home' ); ?>
 		</div>
 		<?php endif; ?>	

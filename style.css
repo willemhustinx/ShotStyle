@@ -595,7 +595,8 @@ object {
 
 /* Home Page Wigeds */
 
-.home-widget-area.row {
+.header-widget-area {
+  margin-top: 40px;
 }
 .home-widget .widget {
   font-size: 16px;
@@ -603,9 +604,7 @@ object {
   padding: 45px 50px;
   background-color: #fff;
   border: 1px solid #dadada;
-}
-.home-widget:last-child {
-  margin-right: 0;
+  margin-bottom: 40px;
 }
 
 /* Custom Category Widget */
