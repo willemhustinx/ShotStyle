@@ -9,15 +9,14 @@ class shotstyle_sponsors extends WP_Widget
 	 function shotstyle_sponsors(){
 
         $widget_ops = array('classname' => 'shotstyle-sponsors','description' => esc_html__( "ShotStyle Sponsorss Widget", 'shotstyle') );
-		    parent::__construct('shotstyle_sponsors', esc_html__('shotstyle Sponsors Widget','shotstyle'), $widget_ops);
+		    parent::__construct('shotstyle_sponsors', esc_html__('ShotStyle Sponsors Widget','shotstyle'), $widget_ops);
     }
 
     function widget($args , $instance) {
     	extract($args);
         $title = isset($instance['title']) ? $instance['title'] : esc_html__('Sponsors', 'shotstyle');
 		$category = isset($instance['category']) ? $instance['category'] : 'nee';
-		
-		
+
       echo $before_widget;
       echo $before_title;
       echo $title;

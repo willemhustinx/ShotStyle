@@ -9,7 +9,7 @@ class shotstyle_upcomming_events extends WP_Widget
 	 function shotstyle_upcomming_events(){
 
         $widget_ops = array('classname' => 'shotstyle-upcomming-events','description' => esc_html__( "ShotStyle Upcomming Events Widget", 'shotstyle') );
-		    parent::__construct('shotstyle_upcomming_events', esc_html__('shotstyle Upcomming Events Widget','shotstyle'), $widget_ops);
+		    parent::__construct('shotstyle_upcomming_events', esc_html__('ShotStyle Upcomming Events Widget','shotstyle'), $widget_ops);
     }
 
     function widget($args , $instance) {

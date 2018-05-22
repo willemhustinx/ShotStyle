@@ -23,16 +23,13 @@ require get_stylesheet_directory() . '/inc/sponsors.php';
  * Enqueue scripts and styles.
  */
 function shotstyle_scripts() {
-	
-    // Flexslider customization
-	wp_enqueue_script(
-			'flexslider-customization', get_stylesheet_directory_uri() . '/inc/js/flexslider-custom.js', array(
-				'jquery',
-				'flexslider-js',
-			), '20140716', true
-		);
-    // Flexslider customization
-    wp_enqueue_script( 'flexslider-sponsors', get_stylesheet_directory_uri() . '/inc/js/flexslider-sponsors.js', array('jquery', 'flexslider-sponsors-js'), '20160920', true );
+    // Flexslider sponsors
+    wp_enqueue_script(
+        'flexslider-sponsors', get_stylesheet_directory_uri() . '/inc/js/flexslider-sponsors.js', array(
+            'jquery',
+            'flexslider-js'
+        ), '20180522', true
+    );
 }
 add_action( 'wp_enqueue_scripts', 'shotstyle_scripts' );
 

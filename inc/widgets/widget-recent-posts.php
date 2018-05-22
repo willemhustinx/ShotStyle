@@ -9,7 +9,7 @@ class shotstyle_recent_posts extends WP_Widget
 	 function shotstyle_recent_posts(){
 
         $widget_ops = array('classname' => 'shotstyle-recent-posts','description' => esc_html__( "ShotStyle Recent Posts Widget", 'shotstyle') );
-		    parent::__construct('shotstyle_recent_posts', esc_html__('shotstyle Recent Posts Widget','shotstyle'), $widget_ops);
+		    parent::__construct('shotstyle_recent_posts', esc_html__('ShotStyle Recent Posts Widget','shotstyle'), $widget_ops);
     }
 
     function widget($args , $instance) {

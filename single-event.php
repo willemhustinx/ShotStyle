@@ -2,7 +2,7 @@
 /**
  * The Template for displaying all single events.
  *
- * @package shotstyle
+ * @package ShotStyle
  */
 
 get_header(); ?>
