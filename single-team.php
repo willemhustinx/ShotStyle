@@ -1,8 +1,8 @@
 <?php
 /**
- * The Template for displaying all single posts.
+ * The Template for displaying all single teams.
  *
- * @package sparkling
+ * @package ShotStyle
  */
 
 get_header(); ?>
@@ -10,23 +10,17 @@ get_header(); ?>
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
 
-		<?php /*while ( have_posts() ) : the_post(); ?>
-
-			<?php get_template_part( 'content', 'team' ); ?>
-
-			<?php sparkling_post_nav(); ?>
-
-		<?php endwhile; // end of the loop. */?>
 		<?php
 		while ( have_posts() ) : the_post();
 
-			get_template_part( 'content', 'team' );
+			get_template_part( 'template-parts/content', 'team' );
 
-			the_post_navigation( array(
-				'next_text' 		=> '<span class="post-title">%title <i class="fa fa-chevron-right"></i></span>',
-     		'prev_text' 		=> '<i class="fa fa-chevron-left"></i> <span class="post-title">%title</span>',
-				'in_same_term'  => false,
-			) );
+			the_post_navigation(
+				array(
+					'next_text' => '<span class="post-title">%title <i class="fa fa-chevron-right"></i></span>',
+					'prev_text' => '<i class="fa fa-chevron-left"></i> <span class="post-title">%title</span>',
+				)
+			);
 
 		endwhile; // end of the loop.
 		?>

@@ -4,7 +4,7 @@
  *
  * Displays all of the <head> section and everything up till <div id="content">
  *
- * @package sparkling
+ * @package Shotstyle
  */
 ?>
 <!doctype html>
@@ -76,6 +76,15 @@
 
 		<div class="top-section">
 			<?php sparkling_featured_slider(); ?>
+		</div>
+		
+		<?php if ( is_front_page() ) :?>
+		<div class="container header-widget-area">
+			<?php get_sidebar( 'home' ); ?>
+		</div>
+		<?php endif; ?>	
+		
+		<div class="top-section">
 			<?php sparkling_call_for_action(); ?>
 		</div>
 
