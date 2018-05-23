@@ -598,14 +598,22 @@ object {
 .header-widget-area {
   margin-top: 40px;
 }
-.home-widget .widget {
+.home-widget{
   font-size: 16px;
   text-align: center;
   padding: 45px 50px;
   background-color: #fff;
   border: 1px solid #dadada;
+  margin: 0 15px;
   margin-bottom: 40px;
 }
+@media (min-width: 768px) {
+  .header-widget-area .row{
+    display: flex;
+  }
+}
+
+
 
 /* Custom Category Widget */
 .cats-widget ul li span {
