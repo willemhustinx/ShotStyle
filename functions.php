@@ -18,7 +18,6 @@ require get_stylesheet_directory() . '/inc/sponsors.php';
 
 
 
-
 /**
  * Enqueue scripts and styles.
  */
@@ -26,9 +25,16 @@ function shotstyle_scripts() {
     // Flexslider sponsors
     wp_enqueue_script(
         'flexslider-sponsors', get_stylesheet_directory_uri() . '/inc/js/flexslider-sponsors.js', array(
-            'jquery',
-            'flexslider-js'
-        ), '20180522', true
+        'jquery',
+        'flexslider-js'
+    ), '20180522', true
+    );
+    // Flexslider sponsors footer
+    wp_enqueue_script(
+        'flexslider-sponsors-footer', get_stylesheet_directory_uri() . '/inc/js/flexslider-sponsors-footer.js', array(
+        'jquery',
+        'flexslider-js'
+    ), '20180522', true
     );
 }
 add_action( 'wp_enqueue_scripts', 'shotstyle_scripts' );

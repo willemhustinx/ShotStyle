@@ -9,6 +9,64 @@
 ?>
 		</div><!-- close .row -->
 	</div><!-- close .container -->
+    <div class="container">
+        <div class="row">
+        <!-- Place somewhere in the <body> of your page -->
+        <div class="flexsliderSponsorsFooter carousel">
+            <ul class="slides">
+                <li class="col-sm-6 col-md-3">
+                    <img src="http://localhost/wp-content/uploads/2018/05/300x225-300x225.png" />
+                </li>
+                <li class="col-sm-6 col-md-3">
+                    <img src="http://localhost/wp-content/uploads/2018/05/300x225-300x225.png" />
+                </li>
+                <li class="col-sm-6 col-md-3">
+                    <img src="http://localhost/wp-content/uploads/2018/05/300x225-300x225.png" />
+                </li>
+                <li class="col-sm-6 col-md-3">
+                    <img src="http://localhost/wp-content/uploads/2018/05/300x225-300x225.png" />
+                </li>
+                <li class="col-sm-6 col-md-3">
+                    <img src="http://localhost/wp-content/uploads/2018/05/300x225-300x225.png" />
+                </li>
+                <li class="col-sm-6 col-md-3">
+                    <img src="http://localhost/wp-content/uploads/2018/05/300x225-300x225.png" />
+                </li>
+                <li class="col-sm-6 col-md-3">
+                    <img src="http://localhost/wp-content/uploads/2018/05/300x225-300x225.png" />
+                </li>
+                <li class="col-sm-6 col-md-3">
+                    <img src="http://localhost/wp-content/uploads/2018/05/300x225-300x225.png" />
+                </li>
+                <li class="col-sm-6 col-md-3">
+                    <img src="http://localhost/wp-content/uploads/2018/05/300x225-300x225.png" />
+                </li>
+                <li class="col-sm-6 col-md-3">
+                    <img src="http://localhost/wp-content/uploads/2018/05/300x225-300x225.png" />
+                </li>
+                <li class="col-sm-6 col-md-3">
+                    <img src="http://localhost/wp-content/uploads/2018/05/300x225-300x225.png" />
+                </li>
+                <li class="col-sm-6 col-md-3">
+                    <img src="http://localhost/wp-content/uploads/2018/05/300x225-300x225.png" />
+                </li>
+                <li class="col-sm-6 col-md-3">
+                    <img src="http://localhost/wp-content/uploads/2018/05/300x225-300x225.png" />
+                </li>
+                <li class="col-sm-6 col-md-3">
+                    <img src="http://localhost/wp-content/uploads/2018/05/300x225-300x225.png" />
+                </li>
+                <li class="col-sm-6 col-md-3">
+                    <img src="http://localhost/wp-content/uploads/2018/05/300x225-300x225.png" />
+                </li>
+                <li class="col-sm-6 col-md-3">
+                    <img src="http://localhost/wp-content/uploads/2018/05/300x225-300x225.png" />
+                </li>
+                <!-- items mirrored twice, total of 12 -->
+            </ul>
+        </div>
+        </div>
+    </div>
 </div><!-- close .site-content -->
 
 	<div id="footer-area">
