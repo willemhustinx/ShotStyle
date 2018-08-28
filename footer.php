@@ -7,45 +7,51 @@
  * @package ShotStyle
  */
 ?>
-		</div><!-- close .row -->
-	</div><!-- close .container -->
+</div><!-- close .row -->
+</div><!-- close .container -->
 </div><!-- close .site-content -->
 
-	<div id="footer-area">
-		<div class="container footer-inner">
-			<div class="row">
-				<?php get_sidebar( 'footer' ); ?>
-			</div>
-		</div>
+<div id="footer-area">
+    <div class="container footer-inner">
+        <div class="row">
+            <?php get_sidebar('footer'); ?>
+        </div>
+    </div>
 
-		<footer id="colophon" class="site-footer" role="contentinfo">
-			<div class="site-info container">
-				<div class="row">
-					<?php if( of_get_option('footer_social') ) sparkling_social_icons(); ?>
-					<nav role="navigation" class="col-md-6">
-						<?php sparkling_footer_links(); ?>
-					</nav>
-					<div class="copyright col-md-6">
-						<?php echo of_get_option( 'custom_footer_text', 'sparkling' ); ?>
-						<?php /* sparkling_footer_info(); */ ?>
-					</div>
-				</div>
-			</div><!-- .site-info -->
-			<div class="scroll-to-top"><i class="fa fa-angle-up"></i></div><!-- .scroll-to-top -->
-		</footer><!-- #colophon -->
-	</div>
+    <footer id="colophon" class="site-footer" role="contentinfo">
+        <div class="site-info container">
+            <div class="row">
+                <?php if (of_get_option('footer_social')){ sparkling_social_icons(); } ?>
+                <nav role="navigation" class="col-md-6">
+                    <?php sparkling_footer_links(); ?>
+                </nav>
+                <div class="copyright col-md-6">
+                    <?php echo of_get_option('custom_footer_text', 'sparkling'); ?>
+                </div>
+            </div>
+        </div><!-- .site-info -->
+        <div class="scroll-to-top"><i class="fa fa-angle-up"></i></div><!-- .scroll-to-top -->
+    </footer><!-- #colophon -->
+</div>
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
 
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-  ga('create', 'UA-44704887-1', 'auto');
-  ga('send', 'pageview');
+    ga('create', 'UA-44704887-1', 'auto');
+    ga('send', 'pageview');
 
 </script>
 
