@@ -31,6 +31,65 @@
         </header><!-- .entry-header -->
 
         <div class="entry-content">
+
+            <?php
+            $featured_args = array(
+                'ignore_sticky_posts' => 1,
+                'post_type' => 'sponsor',
+                'orderby' => 'rand',
+                'tax_query' => array(
+                    array(
+                        'taxonomy' => 'sponsor-category',
+                        'field' => 'slug',
+                        'terms' => get_the_title(),
+                    ),
+                )
+            );
+
+            $featured_query = new WP_Query($featured_args);
+
+            if ($featured_query->have_posts()) :
+                ?>
+                <div class="team-sponsors">
+                    <?php
+                    while ($featured_query->have_posts()) : $featured_query->the_post();
+                        ?>
+                        <div class="team-sponsor">
+
+                            <?php
+
+                            $url = get_post_meta(get_the_ID(), 'sponsor_url', true);
+
+                            if (!filter_var($url, FILTER_VALIDATE_URL) === false){
+                            ?>
+                            <a href="<?php echo $url; ?>" target="_blank">
+                                <?php
+                                }
+
+                                if (has_post_thumbnail()) {
+                                    echo get_the_post_thumbnail(get_the_ID(), 'medium', array('class' => 'sponsor-img'));
+                                } else {
+                                    echo '<h1>' . get_the_title() . '</h1>';
+                                }
+
+                                if (!filter_var($url, FILTER_VALIDATE_URL) === false){
+                                ?>
+                            </a>
+                        <?php
+                        }
+                        ?>
+                        </div>
+
+                    <?php
+                    endwhile;
+                    ?>
+                </div>
+            <?php
+            endif;
+            wp_reset_query();
+
+            ?>
+
             <?php the_content(); ?>
 
             <?php

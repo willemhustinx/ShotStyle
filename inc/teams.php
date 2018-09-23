@@ -321,8 +321,6 @@ add_shortcode('team_matches', 'team_get_matches');
 
 function team_rankings_page()
 {
-
-
     $featured_args = array(
         'posts_per_page' => -1,
         'ignore_sticky_posts' => 1,
