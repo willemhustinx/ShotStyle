@@ -87,7 +87,6 @@
             <?php
             endif;
             wp_reset_query();
-
             ?>
 
             <?php the_content(); ?>

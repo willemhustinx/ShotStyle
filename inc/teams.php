@@ -44,7 +44,7 @@ function create_teams()
             'public' => true,
             'supports' => array('title', 'editor', 'thumbnail', 'revisions'),
             'taxonomies' => array(''),
-            'has_archive' => true,
+            'has_archive' => false,
             'capability_type' => 'page',
             'show_ui' => true,
             'publicly_queryable' => true,
