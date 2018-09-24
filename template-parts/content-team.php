@@ -50,6 +50,7 @@
 
             if ($featured_query->have_posts()) :
                 ?>
+                <h3>Team sponsors</h3>
                 <div class="team-sponsors">
                     <?php
                     while ($featured_query->have_posts()) : $featured_query->the_post();

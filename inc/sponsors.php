@@ -37,13 +37,13 @@ function create_sponsors()
             'public' => true,
             'supports' => array('title', 'thumbnail'),
             'taxonomies' => array(''),
-            'has_archive' => true,
+            'has_archive' => false,
             'capability_type' => 'page',
             'show_ui' => true,
-            'publicly_queryable' => true,
-            'exclude_from_search' => false,
-            'hierarchical' => true,
-            'show_in_nav_menus' => true,
+            'publicly_queryable' => false,
+            'exclude_from_search' => true,
+            'hierarchical' => false,
+            'show_in_nav_menus' => false,
             'menu_icon' => 'dashicons-businessman',
         )
     );

@@ -60,6 +60,7 @@ if ( is_page_template( 'page-fullwidth.php' ) ) {
 
             if ($featured_query->have_posts()) :
                 ?>
+                <h3>Onze Sponsoren</h3>
                 <div class="sponsors">
                     <?php
                     while ($featured_query->have_posts()) : $featured_query->the_post();
