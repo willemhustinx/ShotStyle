@@ -6,7 +6,7 @@
 
 class shotstyle_sponsors extends WP_Widget
 {
-    function shotstyle_sponsors()
+    function __construct()
     {
 
         $widget_ops = array('classname' => 'shotstyle-sponsors', 'description' => esc_html__("ShotStyle Sponsorss Widget", 'shotstyle'));

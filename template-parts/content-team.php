@@ -10,7 +10,7 @@
         <header class="entry-header page-header">
 
             <h1 class="entry-title "><?php the_title(); ?></h1>
-
+            
             <div class="entry-meta">
                 <?php if (get_edit_post_link()) : ?>
                     <?php

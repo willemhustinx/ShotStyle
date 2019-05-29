@@ -2,26 +2,13 @@
 
 /**
  * Adds Custom post type teams
+ * 
+ * https://www.taniarascia.com/wordpress-part-three-custom-fields-and-metaboxes/
  *
  * @package Shotstyle
  */
 
-add_action('init', 'teams_post_types_init');
-
-function teams_post_types_init()
-{
-    create_teams();
-    create_team_categories();
-}
-
-add_action('admin_menu', 'team_ranking_pages');
-
-function team_ranking_pages()
-{
-    add_submenu_page('edit.php?post_type=team', __('Team rankings'), __('Team rankings'), 'edit_posts', basename(__FILE__), 'team_rankings_page');
-}
-
-function create_teams()
+function create_post_teams()
 {
     register_post_type(
         'team', array(
@@ -44,7 +31,7 @@ function create_teams()
             'public' => true,
             'supports' => array('title', 'editor', 'thumbnail', 'revisions'),
             'taxonomies' => array(''),
-            'has_archive' => false,
+            'has_archive' => true,
             'capability_type' => 'page',
             'show_ui' => true,
             'publicly_queryable' => true,
@@ -54,10 +41,7 @@ function create_teams()
             'menu_icon' => 'dashicons-shield-alt',
         )
     );
-}
 
-function create_team_categories()
-{
     register_taxonomy(
         'team-category',
         array('team'),
@@ -82,30 +66,85 @@ function create_team_categories()
         )
     );
 }
+add_action( 'init', 'create_post_teams' );
 
-function rename_team_meta_boxes()
-{
-    remove_meta_box('postimagediv', 'team', 'side');
-    add_meta_box('postimagediv', __('Team Photo', 'shotstyle'), 'post_thumbnail_meta_box', 'team', 'side', 'low');
-}
-
-add_action('add_meta_boxes_team', 'rename_team_meta_boxes');
-
-function competition_add()
-{
+function add_competition_meta_box() {
     add_meta_box(
         'competition',
-        __('NeVoBo competition'),
-        'competition_cb',
+        __('Nevobo Competition'),
+        'show_competition_meta_box',
         'team',
         'normal',
         'high'
     );
 }
+add_action( 'add_meta_boxes', 'add_competition_meta_box' );
 
-add_action('admin_init', 'competition_add');
+function show_competition_meta_box() {
+    global $post;
+    $meta = get_post_meta( $post->ID, 'competition', true ); 
 
-add_filter('posts_orderby', 'custom_team_order');
+    $fields = array(
+        array('name' => 'regio', 'label' => 'Regio', 'type' => 'text'),
+        array('name' => 'poule', 'label' => 'Poule', 'type' => 'text'),
+        array('name' => 'verenigingscode', 'label' => 'Verenigings Code', 'type' => 'text'),
+        array('name' => 'teamtype', 'label' => 'Team Type', 'type' => 'text'),
+        array('name' => 'volgnummer', 'label' => 'Volgnummer', 'type' => 'text'),
+    );
+    ?>
+
+    <input type="hidden" name="competition_nonce" value="<?php echo wp_create_nonce( basename(__FILE__) ); ?>">
+
+    <table class="form-table">
+        <tbody>
+        <?php
+        
+        foreach($fields as $field){
+            ?>
+            <tr>
+                <th scope="row"><label for="competition[<?php echo $field['name'] ?>]"><?php echo $field['label'] ?></label></th>
+                <td><input name="competition[<?php echo $field['name'] ?>]" type="text" id="competition[<?php echo $field['name'] ?>]" value="<?php  if (is_array($meta) && isset($meta[$field['name']])){ echo $meta[$field['name']]; } ?>" class="regular-text">
+            </tr>
+            <?php
+        }
+        ?>
+
+        </tbody>
+    </table>
+
+
+    <?php 
+}
+
+function save_competition_meta( $post_id ) {    
+    // verify nonce
+    if (!isset($_POST['competition_nonce']) || !wp_verify_nonce( $_POST['competition_nonce'], basename(__FILE__) ) ) {
+        return $post_id;
+    }
+    // check autosave
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+        return $post_id;
+    }
+    // check permissions
+    if ( 'page' === $_POST['post_type'] ) {
+        if ( !current_user_can( 'edit_page', $post_id ) ) {
+            return $post_id;
+        } elseif ( !current_user_can( 'edit_post', $post_id ) ) {
+            return $post_id;
+        }
+    }
+
+    $old = get_post_meta( $post_id, 'competition', true );
+    $new = $_POST['competition'];
+
+    if ( $new && $new !== $old ) {
+        update_post_meta( $post_id, 'competition', $new );
+    } elseif ( '' === $new && $old ) {
+        delete_post_meta( $post_id, 'competition', $old );
+    }
+}
+add_action( 'save_post', 'save_competition_meta' );
+
 function custom_team_order($orderby)
 {
     global $wpdb;
@@ -118,93 +157,9 @@ function custom_team_order($orderby)
 
     return $orderby;
 }
+add_filter('posts_orderby', 'custom_team_order');
 
-
-function competition_cb()
-{
-    global $post;
-
-    $meta = get_post_meta($post->ID, '_competition_meta', TRUE);
-
-    ?>
-    <table class="form-table
-        <tr valign=" top">
-    <th scope="row"><label for="regio">Regio</label></th>
-    <td><input name="regio" type="text" id="regio" class="regular-text" value="<?php if (isset($meta['regio'])) {
-            echo $meta['regio'];
-        } ?>"/></td>
-    </tr>
-
-    <tr valign="top">
-        <th scope="row"><label for="poule">Poule</label></th>
-        <td><input name="poule" type="text" id="poule" class="regular-text" value="<?php if (isset($meta['poule'])) {
-                echo $meta['poule'];
-            } ?>"/></td>
-    </tr>
-
-    <tr valign="top">
-        <th scope="row"><label for="verenigingscode">Verenigings code</label></th>
-        <td><input name="verenigingscode" type="text" id="verenigingscode" class="regular-text"
-                   value="<?php if (isset($meta['verenigingscode'])) {
-                       echo $meta['verenigingscode'];
-                   } ?>"/></td>
-    </tr>
-
-    <tr valign="top">
-        <th scope="row"><label for="teamtype">Team type</label></th>
-        <td><input name="teamtype" type="text" id="teamtype" class="regular-text"
-                   value="<?php if (isset($meta['teamtype'])) {
-                       echo $meta['teamtype'];
-                   } ?>"/></td>
-    </tr>
-
-    <tr valign="top">
-        <th scope="row"><label for="volgnummer">Volgnummer</label></th>
-        <td><input name="volgnummer" type="text" id="volgnummer" class="regular-text"
-                   value="<?php if (isset($meta['volgnummer'])) {
-                       echo $meta['volgnummer'];
-                   } ?>"/></td>
-    </tr>
-
-    </table>
-
-    <?php
-    // create a custom nonce for submit verification later
-    echo '<input type="hidden" name="competition_nonce" value="' . wp_create_nonce(__FILE__) . '" />';
-}
-
-// Save the Data
-function competition_save($post_id)
-{
-    // verify nonce
-    if (!wp_verify_nonce($_POST['competition_nonce'], __FILE__)) {
-        return $post_id;
-    }
-    // check autosave
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-        return $post_id;
-    }
-    // check permissions
-    if ('team' == $_POST['post_type']) {
-        if (!current_user_can('edit_page', $post_id)){
-            return $post_id;
-        }
-    } elseif (!current_user_can('edit_post', $post_id)) {
-        return $post_id;
-    }
-
-    $current_data = get_post_meta($post_id, '_competition_meta', TRUE);
-
-    $new_data['regio'] = $_POST['regio'];
-    $new_data['poule'] = $_POST['poule'];
-    $new_data['verenigingscode'] = $_POST['verenigingscode'];
-    $new_data['teamtype'] = $_POST['teamtype'];
-    $new_data['volgnummer'] = $_POST['volgnummer'];
-
-    update_post_meta($post_id, '_competition_meta', $new_data);
-}
-
-add_action('save_post', 'competition_save');
+/*
 
 function team_get_competition_standings()
 {
@@ -318,61 +273,5 @@ function team_get_matches()
 
 add_shortcode('team_matches', 'team_get_matches');
 
-
-function team_rankings_page()
-{
-    $featured_args = array(
-        'posts_per_page' => -1,
-        'ignore_sticky_posts' => 1,
-        'post_type' => 'team',
-        'orderby' => 'title',
-        'order' => 'ASC',
-    );
-
-    $featured_query = new WP_Query($featured_args);
-
-
-    if ($featured_query->have_posts()) :
-
-        while ($featured_query->have_posts()) : $featured_query->the_post();
-
-            $competitionmeta = get_post_meta(get_the_ID(), '_competition_meta', TRUE);
-
-            if (isset($competitionmeta['regio']) && $competitionmeta['regio'] != "" &&
-                isset($competitionmeta['poule']) && $competitionmeta['poule'] != "") :
-
-                ?>
-
-                <div>
-                    <?php echo '<h1>' . get_the_title() . '</h1>'; ?>
-
-                    <?php echo team_get_competition_standings(); ?>
-                </div>
-
-            <?php
-
-            endif;
-
-        endwhile;
-
-    endif;
-    wp_reset_query();
-}
-
+*/
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

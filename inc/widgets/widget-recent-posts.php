@@ -6,7 +6,7 @@
 
 class shotstyle_recent_posts extends WP_Widget
 {
-    function shotstyle_recent_posts()
+    function __construct()
     {
 
         $widget_ops = array('classname' => 'shotstyle-recent-posts', 'description' => esc_html__("ShotStyle Recent Posts Widget", 'shotstyle'));
